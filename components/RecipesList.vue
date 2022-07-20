@@ -1,12 +1,16 @@
 <template>
-  <div class="recipes--list" v-if="recipes.length > 0">
+  <div
+    v-if="recipes.length > 0"
+    class="recipes--list"
+    >
     <h1>dies sind die rezepte</h1>
     <ul>
       <li v-for="recipe in recipes" :key="recipe.id">
         <a
           :href="'/recipes/' + recipe.attributes.slug"
         >
-        {{ recipe.attributes.Name }}
+        <img v-bind:src="'http://localhost:1337' + recipe.attributes.Media.data.attributes.url" alt="" height="150px">
+        <p>{{ recipe.attributes.Name }}</p>
         </a>
       </li>
     </ul>
@@ -20,7 +24,6 @@
 
 <script>
 import axios from 'axios'
-
 export default {
   name: 'RecipesList',
   data() {
@@ -32,7 +35,7 @@ export default {
   },
   async mounted() {
     try {
-      const response = await axios.get('http://localhost:1337/api/recipes?fields[0]=Name&fields[1]=slug')
+      const response = await axios.get('http://localhost:1337/api/recipes?fields[0]=Name&fields[1]=slug&populate[2]=Media')
       this.recipes = response.data.data;
       this.meta = response.data.meta;
     } catch (error) {

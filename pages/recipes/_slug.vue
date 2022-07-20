@@ -3,7 +3,10 @@
     <h1>Error File not found</h1>
   </div>
   <div v-else-if="recipe != null">
-    <h1>{{ recipe.attributes.Name }}</h1>
+    <h2>{{ recipe.attributes.Name }}</h2>
+    <img :src="'http://localhost:1337' + image.data.attributes.url" alt="" height="150px">
+    <div>{{ recipe.attributes.Ingredients }}</div>
+    <p>{{ recipe.attributes.Instruction }}</p>
   </div>
   <div v-else>
     ...loading
@@ -19,19 +22,19 @@ export default {
     const slug = params.slug // When calling /abc the slug will be "abc"
     try {
       const response = await axios.get(
-        'http://localhost:1337/api/recipes?filters[slug][$eq]=' + slug
+        'http://localhost:1337/api/recipes?filters[slug][$eq]=' + slug + '&populate=Media'
       )
-      return { recipe: response.data.data[0] };
+      return {
+        recipe: response.data.data[0],
+        image: response.data.data[0].attributes.Media, };
     } catch (error) {
       return { error };
     }
   },
-  /* data() {
+  data() {
     return {
-      recipe: [],
-      meta: {},
       error: null,
     }
-  }, */
+  },
 }
 </script>
