@@ -1,0 +1,34 @@
+@import './assets/css/style.scss';
+
+header {
+  display: flex;
+  justify-content: space-between;
+  padding: 3rem var(--margin);
+  background-color: antiquewhite;
+
+  span {
+    font-family: 'Courier New', Courier, monospace;
+    background-color: aliceblue;
+  }
+
+  ul {
+    display: flex;
+    justify-content: space-around;
+    gap: rem-calc(30px);
+
+    li {
+      list-style: none;
+      display: block;
+
+      a {
+        text-decoration: none;
+        color: var(--text-color);
+
+        &:hover {
+          color: var(--highlighted-color);
+          cursor: pointer;
+        }
+      }
+    }
+  }
+}

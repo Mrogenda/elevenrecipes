@@ -1,0 +1,60 @@
+.recipe {
+  &__container {
+    padding: var(--margin);
+    display: flex;
+    flex-flow: row wrap;
+    list-style: none;
+    gap: 3rem;
+    background-color: var(--tertiary-color);
+  }
+  &__block{
+    width: 22rem;
+    height: 35rem;
+    background-color: var(--pure-white);
+
+    img {
+      width: 100%;
+      height: 15rem;
+      object-fit: cover;
+    }
+
+    a {
+      text-decoration: none;
+    }
+    p {
+      margin: 1.5rem 2rem;
+      text-align: center;
+    }
+  }
+  &__category {
+    text-transform: uppercase;
+    color: var(--highlighted-color);
+  }
+  &__name {
+    text-align: center;
+    color: var(--text-color);
+    text-transform: capitalize;
+    margin: 1.5rem 2rem;
+  }
+  &__description {
+    color: var(--subheading-color);
+  }
+  &__link {
+    display: block;
+    letter-spacing: .4rem;
+    text-transform: lowercase;
+    font-size: 1.4rem;
+    text-align: center;
+    color: var(--text-color);
+    margin: 1.5rem 3.4rem;
+
+    &::after {
+      content: '';
+      width: 100%;
+      height: 1.2rem;
+      background-color: var(--tertiary-color);
+      display: block;
+      margin-top: -10px;
+    }
+  }
+}
