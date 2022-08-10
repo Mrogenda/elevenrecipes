@@ -3,7 +3,13 @@
     v-if="recipes.length > 0"
     class="recipe__container"
     >
-    <h2>Neueste Rezepte</h2>
+    <h2>{{ categoryVariable }} Rezepte</h2>
+    <p
+      v-for="category in categories"
+      :key="category.id"
+    >
+      {{ category }}
+    </p>
     <ul class="recipe__list">
       <li
         v-for="recipe in recipes.slice(0, 5)"
@@ -21,7 +27,7 @@
           <p class="recipe__description">{{ recipe.attributes.ShortDescription }}</p>
         </a>
         <a :href="'/recipes/' + recipe.attributes.slug" class="underlined">
-          weiterlesen..
+          mehr erfahren
         </a>
       </li>
     </ul>
@@ -37,6 +43,12 @@
 import axios from 'axios'
 export default {
   name: 'RecipesList',
+      props: {
+        categoryVariable: {
+            type: String,
+            default: "Hauptspeise"
+        }
+    },
   data() {
     return {
       recipes: [],
@@ -44,9 +56,14 @@ export default {
       error: null,
     }
   },
+  created() {
+    // props are exposed on `this`
+    console.log(this.foo)
+  },
   async mounted() {
     try {
-      const response = await axios.get('http://localhost:1337/api/recipes?fields[0]=Name&fields[1]=slug&populate[2]=Media&fields[3]=Category&fields[4]=ShortDescription')
+      const catVar = this.categoryVariable;
+      const response = await axios.get('http://localhost:1337/api/recipes?fields[0]=Name&fields[1]=slug&populate[2]=Media&fields[3]=Category&fields[4]=ShortDescription&filters[Category]=' + catVar)
       this.recipes = response.data.data;
       this.meta = response.data.meta;
     } catch (error) {
@@ -61,3 +78,7 @@ export default {
 <style lang="scss">
   @import './RecipeList.scss';
 </style>
+
+
+
+<!-- http://localhost:1337/api/content-type-builder/components/recipe-components.recipe-category -->

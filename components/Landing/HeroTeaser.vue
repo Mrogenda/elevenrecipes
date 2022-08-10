@@ -11,6 +11,7 @@
     >
     <h1 class="hero__headline">{{ info.LandingPageTitle }}</h1>
     <p class="hero__text">{{ info.IntroDescription }}</p>
+    <RecipesCategoryList />
   </div>
 </template>
 

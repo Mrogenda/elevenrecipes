@@ -18,6 +18,6 @@
 }
 
 @function rem-calc($size) {
-  $rem-size: $size/10px;
+  $rem-size: calc($size / 10px);
   @return $rem-size * 1rem;
 }

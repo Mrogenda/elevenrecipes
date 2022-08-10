@@ -1,7 +1,6 @@
 <template>
   <div>
     <LandingHeroTeaser />
-    <a href="/recipes">Link</a>
   </div>
 </template>
 

@@ -36,6 +36,9 @@
         <p>{{ instruction.Instruction }}</p>
       </li>
     </ul>
+    <NuxtLink to="/recipes">
+      Zurück zur Übersicht
+    </NuxtLink>
   </div>
   <div v-else>
     ...loading
